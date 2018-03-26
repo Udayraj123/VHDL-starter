@@ -232,8 +232,8 @@ BEGIN
   -- The row_module will take care of storing itself, multiplying itself with B, and waiting for other rows to store/calculate.
   ----------------------------------------------------------------------------------------------------
 
-  bram_rows : FOR i IN 16 DOWNTO 0 GENERATE
-    ENTITY work.row_module PORT MAP(
+  multiply_and_store : FOR i IN 16 DOWNTO 0 GENERATE
+    row_i: work.row_module PORT MAP(
         clk_in => clk_in, 
         resetModule => resetModule(i), 
         startB => startB, 
