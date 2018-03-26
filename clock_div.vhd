@@ -1,41 +1,40 @@
 -- These need to be imported every time before declaring an entity
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
 
-entity clock_div is
-    Port (
-        clk_in : in  STD_LOGIC;
-        tick_at_count : in INTEGER;
-        reset  : in  STD_LOGIC;
-        clk_out: out STD_LOGIC
+ENTITY clock_div IS
+    PORT (
+        clk_in : IN STD_LOGIC;
+        tick_at_count : IN INTEGER;
+        reset : IN STD_LOGIC;
+        clk_out : OUT STD_LOGIC
     );
-end clock_div;
+END clock_div;
 
-architecture Behavioral of clock_div is
-    signal slow_clock: STD_LOGIC;
-    signal counter : integer range 0 to 500000000 := 0;
-begin
-    
+ARCHITECTURE Behavioral OF clock_div IS
+    SIGNAL slow_clock : STD_LOGIC;
+    SIGNAL counter : INTEGER RANGE 0 TO 500000000 := 0;
+BEGIN
     -- update slow_clock
-    frequency_divider: process (reset, clk_in) begin
-        if (reset = '1') then
+    frequency_divider : PROCESS (reset, clk_in) BEGIN
+        IF (reset = '1') THEN
             slow_clock <= '0';
             counter <= 0;
-        else 
-            if rising_edge(clk_in) then
-                if (counter = tick_at_count) then
+        ELSE
+            IF rising_edge(clk_in) THEN
+                IF (counter = tick_at_count) THEN
                     slow_clock <= NOT(slow_clock);
                     counter <= 0;
-                else
+                ELSE
                     counter <= counter + 1;
-                end if;
-            end if;				
-        end if;
-    end process;
-    
+                END IF;
+            END IF; 
+        END IF;
+    END PROCESS;
+ 
     -- constantly copy updated value(slow_clock) into clk_out
-    outputClk: process (slow_clock) begin
-    	clk_out <= slow_clock;
-    end process;
-end Behavioral;
+    outputClk : PROCESS (slow_clock) BEGIN
+        clk_out <= slow_clock;
+    END PROCESS;
+END Behavioral;

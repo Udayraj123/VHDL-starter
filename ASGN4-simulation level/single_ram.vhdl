@@ -1,35 +1,34 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity single_ram is
-port (
- Clk : in std_logic;
-       address : in integer;
-       we : in std_logic;
-       data_i_A : in std_logic_vector(7 downto 0);
-       data_o_A : out std_logic_vector(7 downto 0)
-    );
-end single_ram;
+ENTITY single_ram IS
+  PORT (
+    Clk : IN std_logic;
+    address : IN INTEGER;
+    we : IN std_logic;
+    data_i_A : IN std_logic_vector(7 DOWNTO 0);
+    data_o_A : OUT std_logic_vector(7 DOWNTO 0)
+  );
+END single_ram;
 
-architecture Behavioral of single_ram is
+ARCHITECTURE Behavioral OF single_ram IS
 
---Declaration of type and signal of a 256 element RAM =  [ -------256 x 8 bit blocks--------  ] 
--- type ram_t is array (0 to 255) of std_logic_vector(7 downto 0);
---Row here : 
-type ram_t is array (0 to 15) of std_logic_vector(7 downto 0);
-signal ram_A : ram_t := (others => (others => '0'));
+  --Declaration of type and signal of a 256 element RAM = [ -------256 x 8 bit blocks-------- ]
+  -- type ram_t is array (0 to 255) of std_logic_vector(7 downto 0);
+  --Row here :
+  TYPE ram_t IS ARRAY (0 TO 15) OF std_logic_vector(7 DOWNTO 0);
+  SIGNAL ram_A : ram_t := (OTHERS => (OTHERS => '0'));
 
-begin
-
---process for read and write operation.
-PROCESS(Clk)
 BEGIN
-   if(rising_edge(Clk)) then
-       if(we='1') then
-          ram_A(address) <= data_i_A;
-       end if;
+  --process for read and write operation.
+  PROCESS (Clk)
+  BEGIN
+    IF (rising_edge(Clk)) THEN
+      IF (we = '1') THEN
+        ram_A(address) <= data_i_A;
+      END IF;
       data_o_A <= ram_A(address);
-   end if;
-END PROCESS;
+    END IF;
+  END PROCESS;
 
-end Behavioral;
+END Behavioral;
