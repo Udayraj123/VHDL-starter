@@ -108,10 +108,11 @@ BEGIN
         resetModule <= (0 => '0', OTHERS => '1');
  
       WHEN sendA | sendA_2 => 
-        --TODO : Connect here from register of h2fData
-
-        -- Convert int to std here
+        -- -- -- -- -- 
+        -- Here we can read data from PC using the h2fData_out register
+        -- A_elem <= h2fData_out;
         A_elem <= std_logic_vector(to_unsigned(matrix_A(j), 8));
+        -- -- -- -- -- 
         -- adjust rowNo & writeEn here.
         IF (j MOD 16 = 15) THEN
           rowNo <= rowNo + 1;

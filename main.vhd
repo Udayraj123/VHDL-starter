@@ -25,8 +25,8 @@ END TOP_LEVEL;
 
 ARCHITECTURE MAIN OF TOP_LEVEL IS
 	-- Clock configuration
+	constant clk_50Hz_tick_count : INTEGER := 2000000;
 	SIGNAL CLK_50HZ : STD_LOGIC := '0';
-	SIGNAL clk_50Hz_tick_count : INTEGER := 2000000;
 	
 	-- The Answer to output will be stored in OUT_INT
 	SIGNAL OUT_INT : INTEGER := 0;
@@ -90,6 +90,7 @@ BEGIN
 		IF (reset_prev = '1' AND reset = '0') THEN
 			OUT_INT <= 0; 
 		ELSE 
+			-- currInp <= to_integer(unsigned(INP_SWITCHES)); -- Convert and store switches input
 			CASE (USER_MODE) IS
 				WHEN "00" => OUT_INT <= 1;
 				WHEN "01" => OUT_INT <= 2;

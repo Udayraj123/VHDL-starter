@@ -3,8 +3,8 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 PACKAGE utils_package IS
--- Array for seven seg display. used in code as DISP_ARRAY(3 downto 0) to correspond to the 4 display hex-numbers
-type DISP_ARRAY is array (integer range <>) of STD_LOGIC_VECTOR(7 downto 0);
+-- Array for seven seg display. used in code as BYTE_ARRAY(3 downto 0) to correspond to the 4 display hex-numbers
+type BYTE_ARRAY is array (integer range <>) of STD_LOGIC_VECTOR(7 downto 0);
 type INT_ARRAY is array (integer range <>) of integer  RANGE 0 TO 9;--:=0
 
 -- function "returns" a calculated value
