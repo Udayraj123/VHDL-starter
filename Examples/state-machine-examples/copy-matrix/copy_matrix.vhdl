@@ -5,11 +5,12 @@ USE ieee.numeric_std.ALL;
 ----------------------------------------------------------------------------------------------------
 -- A demonstration of copying a matrix into another using a state machine.
 -- This code can be used as a starting point for transferring an array/a matrix from PC to FPGA
+-- Simulate this and see how the states change as the clock ticks
 ----------------------------------------------------------------------------------------------------
 
 ENTITY copy_matrix IS
   PORT (
-    Reset : IN std_logic; 
+    reset_in : IN std_logic; 
     clk_in : IN std_logic; -- 08MHz clock from FX2
     data_out0 : OUT std_logic_vector(7 DOWNTO 0);
   );
@@ -20,17 +21,20 @@ ARCHITECTURE behavioural OF copy_matrix IS
 TYPE state_type IS (Reset, initSendA, sendA, endSendA, changeCol, readB, Halt);
 -- Define state variables
 SIGNAL state, next_state : state_type;
+  BEGIN
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Three processes will run parallely that do the following:
 -- NEXT_STATE_DECODE: 'Decode next state' 
--- SYNC_PROC: 'Update current state to next or Reset'
+-- SYNC_PROC: 'Update current state to next or ResetState'
 -- OUTPUT_DECODE: 'Decode output'
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  ------------------------------------------------------------------------------------------------------------------------------------------------------------
-  -- Decides the sequence in which our FSM should move.
-  -- First it will send A row by row, then send B column by column & calculate the column of C concurrently as B is coming (without storing it).
-  ------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ---------------NEXT_STATE_DECODE-------------------------------------------------------------------------------------
+---------------NEXT_STATE_DECODE-------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Decides the sequence in which our FSM should move.
+-- Note: Ignore warnings like 'end_marker should be on the sensitivity list of the process'
+------------------------------------------------------------------------------------------------------------------------------------------------------------
   NEXT_STATE_DECODE : PROCESS (state)
   BEGIN
     next_state <= state; --default is to stay in current state
@@ -85,27 +89,35 @@ SIGNAL state, next_state : state_type;
     END CASE; 
   END PROCESS;
 
+
   -----------SYNC_PROC-----------------------------------------------------------------------------------------
   ------------------------------------------------------------------------------------------------------------------------------------------------------------
   -- This wrapper will push the FSM to next state, and handle the resetbutton.
+  -- Initial state is defined here.
+  -- This code almost always stays the same
   ------------------------------------------------------------------------------------------------------------------------------------------------------------
   SYNC_PROC : PROCESS (clk_in)
   BEGIN
     IF (rising_edge(clk_in)) THEN
-      IF (ResetMatrix = '1') THEN
-        state <= Reset;
+      IF (reset_in = '1') THEN
+        state <= ResetState; -- Initial state is defined here.
       ELSE
         state <= next_state;
       END IF;
     END IF;
   END PROCESS;
+  
+
  -----------OUTPUT_DECODE-----------------------------------------------------------------------------------------
   ------------------------------------------------------------------------------------------------------------------------------------------------------------
-  -- This will contain the actual processing code
+  -- This will contain the actual processing code for 
+  -- Taking inputs,
+  -- Modifying intermediate things other than states if any
+  -- Displaying outputs
   ------------------------------------------------------------------------------------------------------------------------------------------------------------
   OUTPUT_DECODE : PROCESS (state)
   BEGIN
-    CASE (state) IS
+   CASE (state) IS
       WHEN Reset => 
         resetModule <= (OTHERS => '1');
         j <= 0;
@@ -161,4 +173,5 @@ SIGNAL state, next_state : state_type;
 
   END PROCESS;
   ----------------------------------------------------------------------------------------------------
+END behavioural;
  

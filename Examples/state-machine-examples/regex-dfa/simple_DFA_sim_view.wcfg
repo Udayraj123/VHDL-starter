@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/udayraj/Desktop/DFA_test/test_DFA_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="test_dfa" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="7" />
+   <wvobject fp_name="/test_dfa/reset_in" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset_in</obj_property>
+      <obj_property name="ObjectShortName">reset_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_dfa/end_marker" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">end_marker</obj_property>
+      <obj_property name="ObjectShortName">end_marker</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_dfa/clk_in" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_in</obj_property>
+      <obj_property name="ObjectShortName">clk_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_dfa/current_bit_in" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">current_bit_in</obj_property>
+      <obj_property name="ObjectShortName">current_bit_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_dfa/uut/state" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_dfa/accepted" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">accepted</obj_property>
+      <obj_property name="ObjectShortName">accepted</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_dfa/uut/input_length" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">input_length</obj_property>
+      <obj_property name="ObjectShortName">input_length</obj_property>
+   </wvobject>
+</wave_config>
