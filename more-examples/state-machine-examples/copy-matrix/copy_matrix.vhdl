@@ -12,7 +12,7 @@ ENTITY copy_matrix IS
   PORT (
     reset_in : IN std_logic; 
     clk_in : IN std_logic; -- 08MHz clock from FX2
-    data_out0 : OUT std_logic_vector(7 DOWNTO 0);
+    data_out0 : OUT std_logic_vector(7 DOWNTO 0)
   );
 END copy_matrix;
 

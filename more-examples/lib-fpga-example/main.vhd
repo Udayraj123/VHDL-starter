@@ -1,7 +1,3 @@
--- This is the main file that demonstrates the use of all entities enlisted in this directory
--- Note: Since our main concern here is not whether to use integers or std_logic_vectors,
---  	 I've used integers at many places to make the code look more intuitive and easy to debug
--- Code formatter used: http://g2384.github.io/work/VHDLformatter.html
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
