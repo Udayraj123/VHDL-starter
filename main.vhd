@@ -92,7 +92,8 @@ BEGIN
 		ELSE 
 			-- currInp <= to_integer(unsigned(INP_SWITCHES)); -- Convert and store switches input
 			CASE (USER_MODE) IS
-				WHEN "00" => OUT_INT <= 1;
+				-- Call your calculation functions here from the package
+				WHEN "00" => OUT_INT <= 1; -- OUT_INT <= SUM(N,INPUT_NUMS)
 				WHEN "01" => OUT_INT <= 2;
 				WHEN "10" => OUT_INT <= 3;
 				WHEN OTHERS => 

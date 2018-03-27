@@ -9,8 +9,8 @@ type INT_ARRAY is array (integer range <>) of integer  RANGE 0 TO 9;--:=0
 
 -- function "returns" a calculated value
 FUNCTION INT_TO7SEG_BITS (DISP_INT:INTEGER) RETURN STD_LOGIC_VECTOR;
-FUNCTION SUM (N:integer;TenNums:INT_ARRAY(9 downto 0)) RETURN INTEGER;
-FUNCTION AVG (N:integer;TenNums:INT_ARRAY(9 downto 0)) RETURN INTEGER;
+FUNCTION SUM (N:integer;MaxTenNums:INT_ARRAY(9 downto 0)) RETURN INTEGER;
+FUNCTION AVG (N:integer;MaxTenNums:INT_ARRAY(9 downto 0)) RETURN INTEGER;
 
 PROCEDURE TO_INT_ARRAY (SIGNAL NUMBER:IN INTEGER; SIGNAL digits: OUT INT_ARRAY(3 downto 0));
 -- Note: Procedure 'connects' its Multiple INs and Multiple OUTs
@@ -21,23 +21,23 @@ END utils_package;
 
 PACKAGE BODY utils_package IS
 
-FUNCTION SUM (N:integer;TenNums:INT_ARRAY(9 downto 0)) RETURN INTEGER is
+FUNCTION SUM (N:integer;MaxTenNums:INT_ARRAY(9 downto 0)) RETURN INTEGER is
 VARIABLE SumOfNums: integer range 0 to 320 := 0;
 VARIABLE temp: integer range 0 to 10 := 0;
 BEGIN
 -- N can be max 9 here, can use more than 9, or a While loop here.
 	for i in 0 to 9 loop
 		if(temp < N)then
-			SumOfNums := (SumOfNums + TenNums(i));
+			SumOfNums := (SumOfNums + MaxTenNums(i));
 			temp := temp +1;
 		end if;
 	end loop ;
 RETURN SumOfNums;
 END SUM;
 
-FUNCTION AVG (N:integer;TenNums:INT_ARRAY(9 downto 0)) RETURN INTEGER is
+FUNCTION AVG (N:integer;MaxTenNums:INT_ARRAY(9 downto 0)) RETURN INTEGER is
 BEGIN
-	RETURN (SUM(N,TenNums)/N);
+	RETURN (SUM(N,MaxTenNums)/N);
 END AVG;
 
 FUNCTION INT_TO7SEG_BITS (DISP_INT:INTEGER) RETURN STD_LOGIC_VECTOR IS
@@ -45,7 +45,7 @@ VARIABLE RESULT: STD_LOGIC_VECTOR(7 downto 0); -- 8 bits including the dot '.'
 
 BEGIN
 case DISP_INT is
--- NOTE: Check the pin order for your board's display. you may have to reverse the order of bits below.
+-- NOTE: Check the pin order for your board's display. You may have to reverse the order of bits below.
 --		 The constant '1' at the left end is for the decimal point on the display
 	when 0 => RESULT := "11000000"; 
 	when 1 => RESULT := "11111001";

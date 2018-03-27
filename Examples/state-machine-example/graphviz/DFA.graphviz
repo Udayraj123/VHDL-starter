@@ -1,0 +1,13 @@
+digraph DFA {
+	rankdir=LR;
+	size="8,5"
+	node [shape = doublecircle]; Got1;
+	node [shape = circle];
+	Start -> Got0 [ label = "0" ];
+	Start -> Trap [ label = "1" ];
+	Got0 -> Trap [ label = "0" ];
+	Got0 -> Got1 [ label = "1" ];
+	Got1 -> Got0 [ label = "0" ];
+	Got1 -> Trap [ label = "1" ];
+
+}
