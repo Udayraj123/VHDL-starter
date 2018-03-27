@@ -18,10 +18,10 @@ Steps to send a PR:
 4. Done, you are a contributor! (github will do the rest work for you)
 
 You can also start with some of the TODOs listed below -
- [ ] Test the seven segment code (includes the decimal point)
- [ ] Fix some minor bugs (Currently the codes are only synthesized, not tested on actual board)
- [ ] Add a Debounce Code for input
- [ ] Improve Variable naming conventions and add Process labels
- [ ] Test benches for starter-kit
- [ ] Test bench for block-ram-example
- [ ] Lib-fpga Python code part
+- [ ] Test the seven segment code (includes the decimal point)
+- [ ] Fix some minor bugs (Currently the codes are only synthesized, not tested on actual board)
+- [ ] Add a Debounce Code for input
+- [ ] Improve Variable naming conventions and add Process labels
+- [ ] Test benches for starter-kit
+- [ ] Test bench for block-ram-example
+- [ ] Lib-fpga Python code part
