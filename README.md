@@ -25,3 +25,4 @@ You can also start with some of the TODOs listed below -
 - [ ] Test benches for starter-kit
 - [ ] Test bench for block-ram-example
 - [ ] Lib-fpga Python code part
+- [ ] UART example code (We didn't have it during our lab)
