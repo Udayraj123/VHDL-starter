@@ -1,3 +1,5 @@
+# VHDL Start kit
+=======
 
 1. Head on to starter-kit and import the folder contents to a vhdl project in Xilinx (I've used ISE, but it'd work fine with Vivado as well)
 2. Synthesize and examine
@@ -25,3 +27,4 @@ You can also start with some of the TODOs listed below -
 - [ ] Test benches for starter-kit
 - [ ] Test bench for block-ram-example
 - [ ] Lib-fpga Python code part
+- [ ] UART example code (We didn't have it during our lab)
